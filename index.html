@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виділення та перетягування тексту</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            color: #2c3e50;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin-top: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        #textInput {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        #textInput:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #output {
+            min-height: 200px;
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .letter {
+            display: inline-block;
+            padding: 0.5rem;
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .letter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .selected {
+            background: #3498db;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .dragging {
+            opacity: 0.7;
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        #selectionBox {
+            position: absolute;
+            border: 2px dashed #3498db;
+            background-color: rgba(52, 152, 219, 0.1);
+            display: none;
+            pointer-events: none;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .instructions ul {
+            list-style-position: inside;
+            margin-left: 1rem;
+        }
+
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Виділення та перетягування тексту</h1>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="textInput" placeholder="Введіть текст для відображення">
+            <button onclick="displayText()">Відобразити</button>
+        </div>
+        <div id="output"></div>
+        <div id="selectionBox"></div>
+    </div>
+
+    <div class="instructions">
+        <h2>Як користуватися:</h2>
+        <ul>
+            <li>Введіть текст у поле вводу та натисніть "Відобразити"</li>
+            <li>Клікніть на літеру, щоб вибрати її</li>
+            <li>Затисніть CTRL та клікайте на літери для множинного вибору</li>
+            <li>Перетягніть вибрані літери для переміщення</li>
+            <li>Затисніть ліву кнопку миші та перетягніть для виділення прямокутником</li>
+        </ul>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
